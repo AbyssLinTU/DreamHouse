@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "ES6", // Цель компиляции: JavaScript ES6
+    "module": "CommonJS", // Система модулей: CommonJS (для Node.js)
+    "outDir": "./dist", // Каталог для скомпилированных файлов JavaScript
+    "rootDir": "./src", // Корневой каталог для исходных файлов TypeScript
+    "strict": true, // Включить все строгие проверки типов
+    "esModuleInterop": true, // Разрешить совместимость для импорта CommonJS модулей как ES Modules
+    "skipLibCheck": true, // Пропускать проверку типов для всех файлов объявлений (.d.ts)
+    "forceConsistentCasingInFileNames": true // Обеспечить единообразие в именах файлов для регистрозависимых систем
+  },
+  "include": [
+    "src/**/*" // Включить все файлы в папке src и ее подпапках
+  ],
+  "exclude": [
+    "node_modules", // Исключить папку node_modules
+    "**/*.spec.ts" // Исключить тестовые файлы
+  ]
+}

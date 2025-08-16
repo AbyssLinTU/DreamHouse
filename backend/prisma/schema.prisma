@@ -1,0 +1,74 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Product {
+  id             Int      @id @default(autoincrement())
+  rating         Float    @default(0)
+  name           String
+  price          Int
+  salePrice      Int?     @map("sale_price")
+  countAvailable Int      @map("count_available")
+  imagesUrl      String[] @default([""])
+  description    String
+  category       String?
+  createdAt      DateTime @default(now()) @map("created_at")
+  updatedAt      DateTime @updatedAt @map("updated_at")
+
+  comments Comment[]
+}
+
+model Comment {
+  id        Int      @id @default(autoincrement())
+  rating    Int
+  content   String
+  productId Int      @map("product_id")
+  imagesUrl String[] @default([])
+  product   Product  @relation(fields: [productId], references: [id])
+  author    User     @relation(fields: [authorId], references: [id])
+  authorId  Int
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+}
+
+model User {
+  id           Int       @id @default(autoincrement())
+  email        String?   @unique
+  roles        Role[]
+  addresses    String[]  @default([])
+  name         String
+  password     String?
+  isActivated  Boolean   @default(false)
+  activateLink String
+  createdAt    DateTime  @default(now()) @map("created_at")
+  updatedAt    DateTime  @updatedAt @map("updated_at")
+  comments     Comment[]
+  token        Token?
+}
+
+model Token {
+  id           Int      @id @default(autoincrement())
+  user         User     @relation(fields: [userId], references: [id])
+  userId       Int      @unique
+  refreshToken String   @unique @map("refresh_token")
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+}
+
+model Role {
+  id    Int    @id @default(autoincrement())
+  value String @unique @default("GUESS")
+  users User[]
+}
