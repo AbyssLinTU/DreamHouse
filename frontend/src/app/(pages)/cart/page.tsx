@@ -5,6 +5,7 @@ import Image from 'next/image';
 import useStore from '@/lib/store';
 import { CartIcon, MinusIcon, PlusIcon, CloseIcon } from '@/components/shared/icons';
 import Link from 'next/link';
+import { IProduct } from '@/types/product.types';
 
 const CartPage = () => {
   // Get cart items and store functions from Zustand
@@ -31,7 +32,7 @@ const CartPage = () => {
     removeFromCart(productId);
   };
   
-  const handleIncreaseQuantity = (product: any) => {
+  const handleIncreaseQuantity = (product: IProduct) => {
     addToCart(product, 1);
   };
   
@@ -53,7 +54,7 @@ const CartPage = () => {
               <CartIcon className="h-12 w-12 text-amber-600" />
             </div>
             <h2 className="text-2xl font-bold text-neutral-800 mb-4">Your cart is empty</h2>
-            <p className="text-neutral-600 mb-8 max-w-md mx-auto">Looks like you haven't added anything to your cart yet. Explore our products and find something you love!</p>
+            <p className="text-neutral-600 mb-8 max-w-md mx-auto">Looks like you {`haven't`} added anything to your cart yet. Explore our products and find something you love!</p>
             <Link href="/products" className="inline-block bg-amber-600 text-white px-6 py-3 rounded-md hover:bg-amber-700 transition-colors duration-300 transform hover:scale-105">
               Continue Shopping
             </Link>

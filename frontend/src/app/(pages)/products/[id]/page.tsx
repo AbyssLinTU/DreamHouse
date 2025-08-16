@@ -92,13 +92,13 @@ const ProductDetailPage = () => {
       <div className="min-h-screen bg-stone-50 text-neutral-800 font-sans flex items-center justify-center">
         <div className="text-center p-8 bg-white rounded-lg shadow-md max-w-md w-full mx-4">
           <h1 className="text-2xl font-bold text-neutral-800 mb-4">Product Not Found</h1>
-          <p className="text-neutral-600 mb-6">Sorry, we couldn't find the product you're looking for.</p>
-          <a 
+          <p className="text-neutral-600 mb-6">Sorry, we {`couldn't`} find the product {`you're`} looking for.</p>
+          <Link
             href="/products" 
             className="inline-block bg-amber-600 text-white px-6 py-3 rounded-md hover:bg-amber-700 transition-colors duration-300"
           >
             Back to Products
-          </a>
+          </Link>
         </div>
       </div>
     );
@@ -119,7 +119,7 @@ const ProductDetailPage = () => {
     <div className="min-h-screen bg-stone-50 text-neutral-800 font-sans py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
         <div className="mb-6">
-          <a 
+          <Link 
             href="/products" 
             className="inline-flex items-center text-amber-600 hover:text-amber-700 transition-colors duration-300"
           >
@@ -127,7 +127,7 @@ const ProductDetailPage = () => {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path>
             </svg>
             Back to Products
-          </a>
+          </Link>
         </div>
         
         <div className="bg-white rounded-xl shadow-lg overflow-hidden">

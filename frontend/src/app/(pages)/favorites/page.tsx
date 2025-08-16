@@ -5,6 +5,7 @@ import Image from 'next/image';
 import useStore from '@/lib/store';
 import { CartIcon } from '@/components/shared/icons';
 import Link from 'next/link';
+import { IProduct } from '@/types/product.types';
 
 const FavoritesPage = () => {
   // Get favorites and store functions from Zustand
@@ -13,14 +14,14 @@ const FavoritesPage = () => {
   const addToCart = useStore((state) => state.addToCart);
   
   // Handle add to cart
-  const handleAddToCart = (product: any) => {
+  const handleAddToCart = (product: IProduct) => {
     addToCart(product, 1);
   };
   
   // Handle remove from favorites
-  const handleRemoveFromFavorites = (productId: number) => {
-    removeFromFavorites(productId);
-  };
+  // const handleRemoveFromFavorites = (productId: number) => {
+  //   removeFromFavorites(productId);
+  // };
   
   return (
     <div className="min-h-screen bg-stone-50 text-neutral-800 font-sans py-8 px-4 sm:px-6 lg:px-8">
